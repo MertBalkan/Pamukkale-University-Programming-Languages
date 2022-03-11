@@ -2,30 +2,22 @@ import sys # sistem modülünü yükler
 girdi = sys.stdin.read() # EOF karakterine kadar olan tüm girdileri okur
 #Kodunuzu aşağıya yazabilirsiniz. Çıktıda sadece 5 kelime ve bunların belirme sayıları olmalıdır.
 
-girdi = girdi.lower();
-tekrarSayisi = 0
-tekrarEdenKelime = ""
-
-islenmisGirdi = ""
-sozluk = {}
-
 #replace ile yer degistir, kucuk harfe donustur, split ile parcala, dongu ile parcalanmis kelimeleri isle
 
 
-for i in girdi:
-    if(i == "." or i == "," or i == "'"):
-        i = ""
-    elif (i == "" or i == "-"):
-        i = " "
-        
-    islenmisGirdi += i
-    
-    
-print(islenmisGirdi.split())
+girdi = girdi.replace(".", "")
+girdi = girdi.replace(",", "")
+girdi = girdi.replace("'", "")
+girdi = girdi.replace("-", " ")
+girdi = girdi.lower()
 
+sozluk = {}
 
-#for i in islenmisGirdi:
-#    if(tekrarEdenKelime == islenmisGirdi[i]):
-#        tekrarEdenKelime = islenmisGirdi[i]
-#        tekrarSayisi += 1
+for kelime in girdi.split(" "):
+    if(kelime not in sozluk):
+        sozluk[kelime] = 1
+    else:
+        sozluk[kelime] += 1
         
+for anahtar in sorted(sozluk, key=sozluk.get, reverse = True)[:5]:
+    print(anahtar + " " + str(sozluk[anahtar]))
