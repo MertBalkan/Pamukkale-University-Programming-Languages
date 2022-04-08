@@ -1,6 +1,5 @@
 # Bir sayının ters faktoryelini alan metot
 def ters_faktoryel(sayi)
-  #kodunuz bu kısma gelecek ve alttaki raise satırı silinecek
   #120 = 1 2 3 4 5
   carpim = 1
   i = 1
@@ -19,9 +18,27 @@ end
 #bak ve söyle ardışıllığında belirilen adım sayısı kadar hesaplama yapan metot
 def bak_ve_soyle(baslangic, adim)
     sayac = 0
-  #kodunuz bu kısma gelecek ve alttaki raise satırı silinecek
+    for i in 0...adim
+        metin = ""
+        sayac = 1
+        bironceki = nil
+        
+        baslangic.each_char do |c|
+            if bironceki == c
+                sayac += 1
+            elsif bironceki != nil
+                metin += "#{sayac}#{bironceki}"
+                sayac = 1
+            end
+            bironceki = c
+        end    
+        metin += "#{sayac}#{bironceki}"
+        baslangic = metin
+    end
+    return baslangic
 end
 
+#ornek...
 #1513
 #11151113
 #31153113
